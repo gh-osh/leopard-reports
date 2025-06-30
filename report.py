@@ -23,5 +23,5 @@ if st.button("Send balloons!"):
 api_url = 'https://leopard-redcap.lcsb.uni.lu/redcap/api/'
 api_key = st.secrets["rcapikey"]
 project = Project(api_url, api_key)
-data = project.export_records()
+data = project.export_records(format_type='df')
 st.write(data)
