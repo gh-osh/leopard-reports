@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
-import json
+from redcap import Project
 
 
 st.title("Hello Streamlit-er 👋")
@@ -20,22 +20,8 @@ st.markdown(
 if st.button("Send balloons!"):
     st.balloons()
 
-
-data = {
-    'token': st.secrets["rcapikey"],
-    'content': 'record',
-    'action': 'export',
-    'format': 'json',
-    'type': 'flat',
-    'csvDelimiter': '',
-    'rawOrLabel': 'raw',
-    'rawOrLabelHeaders': 'raw',
-    'exportCheckboxLabel': 'false',
-    'exportSurveyFields': 'false',
-    'exportDataAccessGroups': 'false',
-    'returnFormat': 'json'
-}
-r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
-st.write('HTTP Status: ' + str(r.status_code))
-#json_string = json.dumps(r.json())
-st.write(r.json())
+api_url = 'https://leopard-redcap.lcsb.uni.lu/redcap/api/'
+api_key = st.secrets["rcapikey"]
+project = Project(api_url, api_key)
+data = project.export_records()
+st.write(data)
