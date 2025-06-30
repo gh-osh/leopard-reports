@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 st.title("Hello Streamlit-er 👋")
 st.markdown(
@@ -15,3 +16,22 @@ st.markdown(
 
 if st.button("Send balloons!"):
     st.balloons()
+
+
+data = {
+    'token': st.secrets["rcapikey"],
+    'content': 'record',
+    'action': 'export',
+    'format': 'csv',
+    'type': 'flat',
+    'csvDelimiter': '',
+    'rawOrLabel': 'raw',
+    'rawOrLabelHeaders': 'raw',
+    'exportCheckboxLabel': 'false',
+    'exportSurveyFields': 'false',
+    'exportDataAccessGroups': 'false',
+    'returnFormat': 'json'
+}
+r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
+st.print('HTTP Status: ' + str(r.status_code))
+#print(r.text)
