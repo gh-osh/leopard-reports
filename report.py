@@ -37,5 +37,5 @@ data = {
 }
 r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
 st.write('HTTP Status: ' + str(r.status_code))
-json_string = json.dumps(r.json())
-st.write(json_string)
+#json_string = json.dumps(r.json())
+st.write(r.json())
