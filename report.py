@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import pandas as pd
+from io import StringIO
 
 st.title("Hello Streamlit-er 👋")
 st.markdown(
@@ -34,4 +36,5 @@ data = {
 }
 r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
 st.write('HTTP Status: ' + str(r.status_code))
-st.write(r.text)
+df = pd.read_csv(r.text, sep=',')
+st.write(df)
