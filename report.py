@@ -24,4 +24,4 @@ api_url = 'https://leopard-redcap.lcsb.uni.lu/redcap/api/'
 api_key = st.secrets["rcapikey"]
 project = Project(api_url, api_key)
 data = project.export_records(format_type='df')
-st.write(data)
+st.write(f"Data shape: {data.shape}")
