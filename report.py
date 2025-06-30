@@ -25,3 +25,4 @@ api_key = st.secrets["rcapikey"]
 project = Project(api_url, api_key)
 data = project.export_records(format_type='df')
 st.write(f"Data shape: {data.shape}")
+st.histgram(data['sex_at_birth'], bins=2, title='Sex at Birth Distribution')
