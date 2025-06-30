@@ -34,4 +34,4 @@ data = {
 }
 r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
 st.write('HTTP Status: ' + str(r.status_code))
-#print(r.text)
+st.write(r.text)
