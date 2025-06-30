@@ -33,5 +33,5 @@ data = {
     'returnFormat': 'json'
 }
 r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
-st.print('HTTP Status: ' + str(r.status_code))
+st.write('HTTP Status: ' + str(r.status_code))
 #print(r.text)
