@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import pandas as pd
+import json
+
 
 st.title("Hello Streamlit-er 👋")
 st.markdown(
@@ -23,7 +25,7 @@ data = {
     'token': st.secrets["rcapikey"],
     'content': 'record',
     'action': 'export',
-    'format': 'csv',
+    'format': 'json',
     'type': 'flat',
     'csvDelimiter': '',
     'rawOrLabel': 'raw',
@@ -35,5 +37,5 @@ data = {
 }
 r = requests.post('https://leopard-redcap.lcsb.uni.lu/redcap/api/',data=data)
 st.write('HTTP Status: ' + str(r.status_code))
-df = pd.read_csv(r.text, sep=',')
-st.write(df)
+json_string = json.dumps(r.json())
+st.write(json_string)
